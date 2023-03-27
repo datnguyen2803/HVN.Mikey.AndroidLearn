@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/page_home"
+        android:enabled="true"
+        android:icon="@drawable/icon_home"
+        android:title="@string/string_home_icon"
+        android:state_checked="true"/>
+    <item
+        android:id="@+id/page_transactions"
+        android:enabled="true"
+        android:icon="@drawable/icon_transactions"
+        android:title="@string/string_transactions_icon"
+        android:state_checked="false"/>
+    <item
+        android:id="@+id/page_quick_add_transaction"
+        android:enabled="true"
+        android:icon="@drawable/icon_add_true"
+        android:title="@string/string_quick_add_icon"
+        android:state_checked="false"/>
+    <item
+        android:id="@+id/page_setting"
+        android:enabled="true"
+        android:icon="@drawable/icon_setting"
+        android:title="@string/string_setting"
+        android:state_checked="false"/>
+    <item
+        android:id="@+id/page_user"
+        android:enabled="true"
+        android:icon="@drawable/icon_user"
+        android:title="@string/string_user_icon"
+        android:state_checked="false"/>
+
+</menu>

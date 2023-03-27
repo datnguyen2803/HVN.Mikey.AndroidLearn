@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">CloneMoneyLover</string>
+    <string name="title_activity_main">MainActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="string_home_icon">Home</string>
+    <string name="string_transactions_icon">Transactions</string>
+    <string name="string_quick_add_icon">Quick add</string>
+    <string name="string_setting">Setting</string>
+    <string name="string_user_icon">User</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment_1">Hello blank fragment 1</string>
+    <string name="hello_blank_fragment_2">Hello blank fragment 2</string>
+
+</resources>
