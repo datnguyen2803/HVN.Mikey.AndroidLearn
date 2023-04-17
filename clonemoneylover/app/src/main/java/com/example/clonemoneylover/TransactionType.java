@@ -19,9 +19,22 @@ public class TransactionType {
         this.mIconURI = CommonValue.IconURIList[eMinorType.getInt()];
     }
 
-    public TransactionType(CommonValue.TransactionMajorType eMajorType, CommonValue.TransactionMinorType eMinorType) {
-        this.eMajorType = eMajorType;
+    public TransactionType(CommonValue.TransactionMinorType eMinorType) {
         this.eMinorType = eMinorType;
+
+//         assign major type from minor type
+        if(this.eMinorType.getInt() > CommonValue.TransactionMinorType.eTRANSFER_OUT_NONE.getInt()
+        && this.eMinorType.getInt() < CommonValue.TransactionMinorType.eTRANSFER_OUT_MAX.getInt()){
+            this.eMajorType = CommonValue.TransactionMajorType.eTRANSFER_MONEY_OUTGOING;
+        }
+        else if(this.eMinorType.getInt() > CommonValue.TransactionMinorType.eTRANSFER_IN_NONE.getInt()
+                && this.eMinorType.getInt() < CommonValue.TransactionMinorType.eTRANSFER_IN_MAX.getInt()) {
+            this.eMajorType = CommonValue.TransactionMajorType.eTRANSFER_MONEY_INCOMING;
+        }
+        else
+        {
+            this.eMajorType = CommonValue.TransactionMajorType.eTRANSFER_MONEY_MAX;
+        }
 
         this.majorTypeName = String.valueOf(CommonValue.TransactionMajorTypeString[eMajorType.getInt()]);
         this.minorTypeName = String.valueOf(CommonValue.TransactionMinorTypeString[eMinorType.getInt()]);

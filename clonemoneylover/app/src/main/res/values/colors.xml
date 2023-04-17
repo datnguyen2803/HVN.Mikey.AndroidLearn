@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey">#D8D8D8</color>
+    <color name="bg_main">#e8e9eb</color>
+    <color name="button_yes">#00b4d8</color>
+    <color name="button_yes_bg">#caf0f8</color>
+    <color name="button_no">#e03c3c</color>
+    <color name="button_no_bg">#fcd1d6</color>
+    <color name="text_green">#2e938c</color>
+    <color name="bg_green">#daedd5</color>
 </resources>

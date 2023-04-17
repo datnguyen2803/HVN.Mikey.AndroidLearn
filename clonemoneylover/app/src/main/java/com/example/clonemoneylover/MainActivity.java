@@ -1,5 +1,6 @@
 package com.example.clonemoneylover;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 
@@ -62,6 +63,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.page_transactions:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_content, fragmentTransactions).commit();
                 return true;
+
+            case R.id.page_quick_add_transaction:
+                Intent intent = new Intent(MainActivity.this, AddTransactionActivity.class);
+                startActivity(intent);
+
             default:
                 break;
         }

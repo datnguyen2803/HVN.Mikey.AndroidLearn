@@ -7,16 +7,6 @@
 
     tools:context=".HomeActivity">
 
-<!--    Bottom-->
-<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
-<!--        android:id="@+id/bottom_navigation"-->
-<!--        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:backgroundTint="#8f8f8f"-->
-
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:menu="@menu/bottom_navigation_menu" />-->
 
 <!--    30% guideline-->
     <androidx.constraintlayout.widget.Guideline

@@ -23,26 +23,30 @@ public class CommonValue {
     }
 
     public static enum TransactionMinorType {
-        eTRANSFER_OUT_FOOD_AND_DRINK(0),
-        eTRANSFER_OUT_TRANSPORTATION(1),
-        eTRANSFER_OUT_BILL(2),
-        eTRANSFER_OUT_HOME_MAINTENANCE(3),
-        eTRANSFER_OUT_MEDICAL(4),
-        eTRANSFER_OUT_EDUCATION(5),
-        eTRANSFER_OUT_PERSONAL_ITEMS(6),
-        eTRANSFER_OUT_FITNESS(7),
-        eTRANSFER_OUT_GIFTS_AND_DONATION(8),
-        eTRANSFER_OUT_LOAN(9),
-        eTRANSFER_OUT_DEBT_REPAYMENT(10),
-        eTRANSFER_OUT_OTHER(11),
+        eTRANSFER_OUT_NONE(0),
+        eTRANSFER_OUT_FOOD_AND_DRINK(1),
+        eTRANSFER_OUT_TRANSPORTATION(2),
+        eTRANSFER_OUT_BILL(3),
+        eTRANSFER_OUT_HOME_MAINTENANCE(4),
+        eTRANSFER_OUT_MEDICAL(5),
+        eTRANSFER_OUT_EDUCATION(6),
+        eTRANSFER_OUT_PERSONAL_ITEMS(7),
+        eTRANSFER_OUT_FITNESS(8),
+        eTRANSFER_OUT_GIFTS_AND_DONATION(9),
+        eTRANSFER_OUT_LOAN(10),
+        eTRANSFER_OUT_DEBT_REPAYMENT(11),
+        eTRANSFER_OUT_OTHER(12),
+        eTRANSFER_OUT_MAX(13),
 
-        eTRANSFER_IN_SALARY(12),
-        eTRANSFER_IN_DEBT(13),
-        eTRANSFER_IN_DEBT_COLLECTION(14),
-        eTRANSFER_IN_OTHER(15),
+        eTRANSFER_IN_NONE(14),
+        eTRANSFER_IN_SALARY(15),
+        eTRANSFER_IN_DEBT(16),
+        eTRANSFER_IN_DEBT_COLLECTION(17),
+        eTRANSFER_IN_OTHER(18),
+        eTRANSFER_IN_MAX(19),
 
         // use for list
-        eTRANSFER_MAX(16);
+        eTRANSFER_MAX(20);
 
         private int value;
         private TransactionMinorType(int _value)
@@ -115,4 +119,20 @@ public class CommonValue {
 //                    default
                     R.drawable.icon_transactions,
             };
+
+    public static enum WalletType {
+        eWALLET_TYPE_PAY (0),
+        eWALLET_TYPE_SAVING (1);
+
+        private int value;
+        private WalletType(int _value)
+        {
+            this.value = _value;
+        }
+
+        public int getInt()
+        {
+            return value;
+        }
+    }
 }

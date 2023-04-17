@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_main"
     tools:context=".FragmentHome">
 
     <!-- TODO: Update blank fragment layout -->
@@ -17,16 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--    Bottom-->
-        <!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
-        <!--        android:id="@+id/bottom_navigation"-->
-        <!--        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        app:backgroundTint="#8f8f8f"-->
-
-        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--        app:menu="@menu/bottom_navigation_menu" />-->
 
         <!--    30% guideline-->
         <androidx.constraintlayout.widget.Guideline
@@ -34,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.3" />
+            app:layout_constraintGuide_percent="0.2" />
 
         <!--    Header-->
         <com.google.android.material.card.MaterialCardView
@@ -54,15 +45,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- Icon -->
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    app:srcCompat="@drawable/icon_user"
-                    android:scaleType="centerCrop"
-                    android:layout_marginVertical="5dp"
-                    />
-
                 <!--            Welcome text-->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -70,41 +52,245 @@
                     android:orientation="vertical"
                     android:padding="0dp">
 
-                    <!-- Title, secondary and supporting text -->
-                    <TextView
-                        android:layout_width="wrap_content"
+<!--                    Total Balance-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Welcome back,"
-                        android:textAppearance="?attr/textAppearanceHeadline3"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:padding="3dp"
+                        >
+                        <TextView
+                            android:id="@+id/tvTotalBalance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?attr/textAppearanceHeadline3"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            />
+                        <TextView
+                            android:id="@+id/tvCurrency"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/tvTotalBalance"
+                            android:layout_marginStart="5dp"
+                            android:textAppearance="?attr/textAppearanceHeadline3"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:text="@string/string_currency"
+                            android:layout_centerVertical="true"
+                            />
+                        <ImageView
+                            android:id="@+id/ivReveal"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_toEndOf="@+id/tvCurrency"
+                            android:layout_marginStart="5dp"
+                            android:src="@drawable/icon_eye_reveal_enable"
+                            android:layout_centerVertical="true"
+                            />
+                        <ImageView
+                            android:id="@+id/ivNotification"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="end"
+                            android:src="@drawable/icon_bell_noti"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            />
+
+                    </RelativeLayout>
+
+<!--                    Question-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Mr. Dat"
-                        android:textAppearance="?attr/textAppearanceHeadline4"
-                        android:textColor="?android:attr/textColorSecondary"
-                        />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="3dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/string_total_balance"
+                            android:textAppearance="?attr/textAppearanceHeadline5"
+                            android:textColor="?android:attr/textColorSecondary"
+                            />
+                        <ImageView
+                            android:id="@+id/ivBalanceQuestion"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="5dp"
+                            android:src="@drawable/icon_question"
+                            />
+                    </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <!--    Body-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+        <ScrollView
+            android:id="@+id/svBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="vertical"
             app:layoutManager="LinearLayoutManager"
 
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/guideline30"
 
-            android:layout_margin="10dp"
-            />
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="10dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardHomeRating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="15dp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp">
+                        <TextView
+                            android:id="@+id/tvHomeRating"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+
+                            android:textSize="18sp"
+                            android:text="@string/string_home_rating"
+                            />
+                        <Button
+                            android:id="@+id/btYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@+id/tvHomeRating"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="10dp"
+                            app:backgroundTint="@color/button_yes_bg"
+
+                            app:icon="@drawable/icon_like"
+                            app:iconSize="30dp"
+                            app:iconTint="@color/button_yes"
+                            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+
+                            android:text="@string/string_yes"
+                            android:textColor="@color/button_yes"
+                            />
+                        <Button
+                            android:id="@+id/btNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@+id/tvHomeRating"
+                            app:layout_constraintLeft_toRightOf="@+id/btYes"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginStart="10dp"
+                            app:backgroundTint="@color/button_no_bg"
+
+                            app:icon="@drawable/icon_dislike"
+                            app:iconSize="30dp"
+                            app:iconTint="@color/button_no"
+                            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+
+                            android:text="@string/string_no"
+                            android:textColor="@color/button_no"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardMyWallets"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="15dp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp">
+                        <TextView
+                            android:id="@+id/tvMyWallets"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+
+
+                            android:textSize="25sp"
+                            android:text="@string/string_my_wallets"
+                            />
+                        <TextView
+                            android:id="@+id/tvSeeAll"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+
+                            android:textSize="20sp"
+                            android:text="@string/string_see_all"
+                            android:textColor="@color/text_green"
+                            />
+
+                        <LinearLayout
+
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@+id/tvMyWallets"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="center_vertical">
+
+                            <!-- Icon -->
+                            <ImageView
+                                android:id="@+id/transIcon"
+                                android:layout_height="30dp"
+                                android:layout_width="30dp"
+                                app:srcCompat="@drawable/icon_wallet"
+                                android:scaleType="centerCrop"
+                                android:layout_margin="5dp"
+                                />
+
+                            <!--            Detail -->
+                            <TextView
+                                android:id="@+id/tvCurrWalletDesc"
+                                android:layout_width="250dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="20sp"
+                                android:padding="5dp"
+                                android:layout_margin="5dp"
+                                />
+                            <!--    Money-->
+                            <TextView
+                                android:id="@+id/tvCurrWalletBalance"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:textSize="20sp"
+                                android:layout_margin="5dp"
+                                android:gravity="center"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@string/string_currency"
+                                android:textSize="20sp"
+                                android:layout_margin="5dp"
+                                android:gravity="center"
+                                />
+
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+        </ScrollView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

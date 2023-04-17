@@ -76,7 +76,8 @@ public class TransactionModel {
 
         for (int i = 1; i <= numTrans; i++)
         {
-            TransactionType transType = new TransactionType(CommonValue.TransactionMajorType.eTRANSFER_MONEY_INCOMING, CommonValue.TransactionMinorType.eTRANSFER_IN_SALARY);
+            CommonValue.TransactionMinorType eMinorType = CommonValue.TransactionMinorType.eTRANSFER_OUT_FOOD_AND_DRINK;
+            TransactionType transType = new TransactionType(eMinorType);
             transList.add(new TransactionModel(i*1000, transType, "trans from" + i));
         }
 

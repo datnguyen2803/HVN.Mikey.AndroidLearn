@@ -7,16 +7,34 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!--    Common use-->
+    <string name="string_balance">Balance</string>
+    <string name="string_total_balance">Total balance</string>
+    <string name="string_currency">₫</string>
+    <string name="string_yes">Yes</string>
+    <string name="string_no">No</string>
 
+    <!--    Navigation bottom bar-->
     <string name="string_home_icon">Home</string>
     <string name="string_transactions_icon">Transactions</string>
     <string name="string_quick_add_icon">Quick add</string>
     <string name="string_setting">Setting</string>
     <string name="string_user_icon">User</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment_1">Hello blank fragment 1</string>
-    <string name="hello_blank_fragment_2">Hello blank fragment 2</string>
+    <string name="string_see_all">See all</string>
+    <string name="string_see_reports">See reports</string>
+    <string name="string_week">Week</string>
+    <string name="string_month">Month</string>
+    <string name="string_year">Year</string>
 
+
+    <!--    Home Screen-->
+    <string name="string_home_rating">Did you find the Home feature useful to you?</string>
+    <string name="string_my_wallets"><b>My Wallets</b></string>
+    <string name="string_spending_report">Spending report</string>
+    <string name="string_total_spent_month">Total spent this month</string>
+    <string name="string_total_spent_week">Total spent this week</string>
+
+    <!--    Transactions screen-->
+    <string name="string_dropdown_wallet_description">Select your wallet</string>
+    <string name="string_dropdown_wallet_hint">E.g Paying wallet</string>
 </resources>

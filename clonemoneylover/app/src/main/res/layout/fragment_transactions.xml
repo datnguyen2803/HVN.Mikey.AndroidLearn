@@ -11,53 +11,176 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <!--    30% guideline-->
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline30"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.2" />
-
         <!--    Header-->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardWelcome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/guideline30"
-
-            android:layout_margin="10dp">
-
-                <!--            Welcome text-->
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fragHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="0dp">
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="25dp">
 
-                <!-- Title, secondary and supporting text -->
+                <!-- Balance info -->
                 <TextView
+                    android:id="@+id/stringBalance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Balance"
-                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@string/string_balance"
+                    android:textSize="20sp"
                     />
                 <TextView
+                    android:id="@+id/tvCurrentBalance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="1 734 601 ₫"
-                    android:textAppearance="?attr/textAppearanceHeadline4"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stringBalance"
+                    android:textSize="20sp"
+                    android:textColor="?android:attr/textColorSecondary"
+                    />
+                <TextView
+                    android:id="@+id/stringCurrency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@+id/tvCurrentBalance"
+                    app:layout_constraintTop_toBottomOf="@+id/stringBalance"
+                    android:text="@string/string_currency"
+                    android:textSize="20sp"
                     android:textColor="?android:attr/textColorSecondary"
                     />
 
-        </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+<!--                Dropdown select-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dropdownWalletMenu"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCurrentBalance">
+                    <AutoCompleteTextView
+                        android:id="@+id/dropdownWalletItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:text="@string/string_balance"
+                        android:hint="@string/string_dropdown_wallet_hint"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+<!--                Time select-->
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dropdownWalletMenu"
+                    app:tabMode="scrollable"
+                    app:tabContentStart="50dp"
+                    android:contentDescription="@string/string_dropdown_wallet_description">
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="THIS MONTH"
+                        />
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="LAST MONTH"
+                        />
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FUTURE"
+                        />
+                </com.google.android.material.tabs.TabLayout>
+
+<!--                Wallet overview-->
+                <TextView
+                    android:id="@+id/stringInflow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tabTime"
+                    android:text="Inflow"
+                    android:textSize="15sp"
+                    />
+                <TextView
+                    android:id="@+id/tvInflow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tabTime"
+                    android:text="100k"
+                    android:textSize="15sp"
+                    android:textColor="@color/button_yes"
+                    />
+                <TextView
+                    android:id="@+id/stringOutflow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stringInflow"
+                    android:text="Outflow"
+                    android:textSize="15sp"
+                    />
+                <TextView
+                    android:id="@+id/tvOutflow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stringInflow"
+                    android:text="200k"
+                    android:textSize="15sp"
+                    android:textColor="@color/button_no"
+                    />
+                <View
+                    android:id="@+id/blackLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvOutflow"
+                    android:background="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/tvTimeBalance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/blackLine"
+                    android:text="-100k"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    />
+
+<!--                report button-->
+                <Button
+                    android:id="@+id/btViewReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTimeBalance"
+                    android:text="View report for this period"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_green"
+
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    app:backgroundTint="@color/bg_green"
+
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!--    Body-->
         <androidx.recyclerview.widget.RecyclerView
@@ -69,10 +192,9 @@
 
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guideline30"
+            app:layout_constraintTop_toBottomOf="@+id/fragHeader"
 
-            android:layout_margin="0dp"
+            android:layout_marginTop="20dp"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
