@@ -1,7 +1,9 @@
 package com.example.clonemoneylover;
 
 
-public class TransactionType {
+import java.io.Serializable;
+
+public class TransactionType implements Serializable {
 
     private CommonValue.TransactionMajorType eMajorType;
     private CommonValue.TransactionMinorType eMinorType;

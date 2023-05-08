@@ -58,6 +58,14 @@ public class CommonValue {
         {
             return value;
         }
+        public static TransactionMinorType fromInt(int value) {
+            for (TransactionMinorType e : TransactionMinorType.values()) {
+                if (e.value == value) {
+                    return e;
+                }
+            }
+            throw new IllegalArgumentException("Invalid value: " + value);
+        }
     }
 
     public static final String[] TransactionMajorTypeString =
@@ -135,4 +143,6 @@ public class CommonValue {
             return value;
         }
     }
+
+
 }

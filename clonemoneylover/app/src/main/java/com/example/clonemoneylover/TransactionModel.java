@@ -1,11 +1,12 @@
 package com.example.clonemoneylover;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class TransactionModel {
+public class TransactionModel implements Serializable {
 
     public int getMoney() {
         return mMoney;
@@ -61,6 +62,14 @@ public class TransactionModel {
 //        mDate = LocalDate.now();
 //        mTime = LocalTime.now();
 //    }
+
+    public TransactionModel() {
+        this.mMoney = 0;
+        this.mTransType = new TransactionType(CommonValue.TransactionMinorType.eTRANSFER_OUT_OTHER);
+        this.mDescription = "";
+        mDate = LocalDate.now();
+        mTime = LocalTime.now();
+    }
 
     public TransactionModel(int _money, TransactionType _transType, String _description) {
         this.mMoney = _money;

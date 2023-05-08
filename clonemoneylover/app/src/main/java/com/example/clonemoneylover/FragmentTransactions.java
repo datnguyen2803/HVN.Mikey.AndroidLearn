@@ -2,11 +2,15 @@ package com.example.clonemoneylover;
 
 import static com.example.clonemoneylover.CommonValue.WalletType;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,10 +35,14 @@ import java.util.ArrayList;
  */
 public class FragmentTransactions extends Fragment {
 
+    private static final String TAG = "FragmentTransaction";
     View mView;
     Context mContext;
+    BroadcastReceiver mServiceReceiver;
     UserModel mUser;
     WalletModel mMainWallet;
+    ArrayList<TransactionModel> mTransList;
+    TransactionModel mTrans;
 
     public FragmentTransactions() {
         // Required empty public constructor
@@ -59,35 +67,86 @@ public class FragmentTransactions extends Fragment {
         mView = inflater.inflate(R.layout.fragment_transactions, container, false);
         mContext = getActivity();
 
+        Init();
         LoadFromDB();
         LoadToView();
-
 
         return mView;
     }
 
+    private void Init() {
+        mUser = new UserModel();
+        mMainWallet = new WalletModel();
+        mTransList = new ArrayList<>();
+        mTrans = new TransactionModel();
+        mServiceReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                //Extract your data - better to use constants for keys
+                String action = intent.getAction();
+                Log.d(TAG, action);
+                Bundle extras = intent.getExtras();
+                if(extras == null) {
+                    return;
+                }
+                for (String extraKey : extras.keySet()) {
+                    Log.d(TAG, extraKey);
+                    switch (extraKey) {
+                        case DBService.EXTRA_KEY_GET_TRANSACTION_LIST: {
+                            mTransList = (ArrayList<TransactionModel>) intent.getSerializableExtra(extraKey);
+                            break;
+                        }
+
+                        case DBService.EXTRA_KEY_GET_TRANSACTION: {
+                            mTrans = (TransactionModel) intent.getSerializableExtra(extraKey);
+                            break;
+                        }
+
+                        case DBService.EXTRA_KEY_GET_USER: {
+                            mUser = (UserModel) intent.getSerializableExtra(extraKey);
+                        }
+
+                        default: {
+                            break;
+                        }
+                    }
+                }
+                LoadFromDB();
+                LoadToView();
+                mView.invalidate();
+            }
+        };
+        mContext.registerReceiver(mServiceReceiver, new IntentFilter(DBService.ACTION_ACTIVITY2SERVICE));
+        Intent intent = new Intent(mContext, DBService.class);
+        intent.putExtra(DBService.COMMAND_ACTIVITY2SERVICE, DBService.EXTRA_KEY_GET_TRANSACTION_LIST);
+        mContext.startService(intent);
+
+    }
+
     private void LoadFromDB()
     {
+
         // Get data
-        ArrayList<TransactionModel> tempPayTransList = TransactionModel.loadFromDB(10);
+        ArrayList<TransactionModel> tempPayTransList = mTransList;
         WalletModel tempPayWallet = new WalletModel(tempPayTransList, WalletType.eWALLET_TYPE_PAY, "Pay wallet");
-        ArrayList<TransactionModel> tempSavingTransList = TransactionModel.loadFromDB(4);
-        WalletModel tempSavingWallet = new WalletModel(tempSavingTransList, WalletType.eWALLET_TYPE_SAVING, "Saving wallet");
+//        ArrayList<TransactionModel> tempSavingTransList = TransactionModel.loadFromDB(4);
+//        WalletModel tempSavingWallet = new WalletModel(tempSavingTransList, WalletType.eWALLET_TYPE_SAVING, "Saving wallet");
         ArrayList<WalletModel> tempWalletList = new ArrayList<WalletModel>() {
             {
                 add(tempPayWallet);
-                add(tempSavingWallet);
+//                add(tempSavingWallet);
             }
         };
 
-        mUser = new UserModel(tempWalletList, "DatChaos");
+        mUser.setName("Dat chaos");
+        mUser.setWalletList(tempWalletList);
         mMainWallet = mUser.getWalletList().get(0);
 
 //        drop down items
         ArrayList<String> dropdownWalletItemList = new ArrayList<String>() {
             {
                 add(mUser.getWalletList().get(0).getDescription());
-                add(mUser.getWalletList().get(1).getDescription());
+//                add(mUser.getWalletList().get(1).getDescription());
             }
         };
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(mContext, R.layout.wallet_dropdown_item, dropdownWalletItemList);
