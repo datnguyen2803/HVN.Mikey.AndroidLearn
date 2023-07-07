@@ -129,8 +129,9 @@ public class CommonValue {
             };
 
     public static enum WalletType {
-        eWALLET_TYPE_PAY (0),
-        eWALLET_TYPE_SAVING (1);
+        eWALLET_TYPE_NONE (0),
+        eWALLET_TYPE_PAY (1),
+        eWALLET_TYPE_SAVING (2);
 
         private int value;
         private WalletType(int _value)
@@ -141,6 +142,14 @@ public class CommonValue {
         public int getInt()
         {
             return value;
+        }
+        public static WalletType fromInt(int value) {
+            for (WalletType e : WalletType.values()) {
+                if (e.value == value) {
+                    return e;
+                }
+            }
+            throw new IllegalArgumentException("Invalid value: " + value);
         }
     }
 
